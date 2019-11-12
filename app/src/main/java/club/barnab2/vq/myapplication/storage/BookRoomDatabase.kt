@@ -32,11 +32,13 @@ public abstract class BookRoomDatabase : RoomDatabase() {
                     context.applicationContext,
                     BookRoomDatabase::class.java,
                     "book_database"
-                ).addCallback(
-                    BookDatabaseCallback(
-                        scope
-                    )
-                ).build()
+                )
+//                    .addCallback(
+//                    BookDatabaseCallback(
+//                        scope
+//                    )
+//                )
+                    .build()
                 DB_INSTANCE = instance
                 return instance
             }

@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">My Application</string>
-    <string name="hint_isbn">isbn</string>
-    <string name="hint_title">title</string>
+    <string name="hint_isbn">Isbn</string>
+    <string name="hint_title">Title</string>
+    <string name="label_price">Price</string>
+    <string name="label_photo">Cover</string>
     <string name="button_save">Save</string>
 </resources>

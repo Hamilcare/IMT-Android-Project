@@ -1,12 +1,17 @@
 package club.barnab2.vq.myapplication
 
 import android.content.Context
+import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import club.barnab2.vq.myapplication.entity.Book
+import com.squareup.picasso.Callback
+import com.squareup.picasso.Picasso
 
 
 class BookListAdapter internal constructor(
@@ -16,8 +21,17 @@ class BookListAdapter internal constructor(
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var books = emptyList<Book>()
 
+    val picassoBuilder = Picasso.Builder(context)
+    val picasso = picassoBuilder.listener(object : Picasso.Listener {
+        override fun onImageLoadFailed(picasso: Picasso, uri: Uri, exception: Exception) {
+            Log.d("error Picasso","exception $exception")
+        }
+    }).build()
+
     inner class BookViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val bookItemView: TextView = itemView.findViewById(R.id.textView)
+        val bookTitleView: TextView = itemView.findViewById(R.id.titleView)
+        val bookAuthorView: TextView = itemView.findViewById(R.id.authorView)
+        val coverView : ImageView = itemView.findViewById(R.id.imageView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookViewHolder {
@@ -28,7 +42,14 @@ class BookListAdapter internal constructor(
 
     override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
         val current = books[position]
-        holder.bookItemView.text = current.title
+//        val picasso = Picasso.get()
+
+
+        holder.bookTitleView.text = current.title
+        holder.bookAuthorView.text = current.getFormatedPrice()
+        Log.d("BookItem", "Book : $current")
+        picasso.load(current.cover).resize(343, 500).onlyScaleDown()
+            .into(holder.coverView)
     }
 
     internal fun setBooks(words: List<Book>) {

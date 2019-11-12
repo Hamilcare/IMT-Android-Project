@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
             .build()
 
         bookService = retrofit.create(HenryPotierService::class.java)
-        syncBook()
+
 
     }
 
@@ -109,15 +109,9 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if(requestCode == newBookActivityRequestCode && resultCode == Activity.RESULT_OK){
-            data?.getStringExtra(NewBookActivity.EXTRA_REPLY)?.let {
-                val newBook = Book(
-                    it,
-                    "title",
-                    12.5f,
-                    "cover",
-                    arrayOf("1", "2", "3")
-                )
-                bookViewModel.insert(newBook)
+            data?.getParcelableExtra<Book>(NewBookActivity.EXTRA_REPLY)?.let {
+
+                bookViewModel.insert(it)
             }
         } else{
             Toast.makeText(applicationContext,"Something wrong appened",Toast.LENGTH_LONG).show()
