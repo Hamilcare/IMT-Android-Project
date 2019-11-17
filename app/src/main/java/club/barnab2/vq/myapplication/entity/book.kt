@@ -10,18 +10,20 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 @Entity(tableName = "book_table")
 @TypeConverters(BookSynopsisConverter::class)
-data class Book (@PrimaryKey val isbn : String,
-                 val title : String,
-                 val price : Float,
-                 val cover : String,
-                 val synopsis : Array<String> ) : Parcelable{
+data class Book(
+    @PrimaryKey val isbn: String,
+    val title: String,
+    val price: Float,
+    val cover: String,
+    val synopsis: Array<String>
+) : Parcelable {
 
     override fun equals(other: Any?): Boolean {
         val autre = other as Book
         return isbn == (autre.isbn)
     }
 
-    fun getFormatedPrice(): String{
+    fun getFormatedPrice(): String {
         return price.toString().plus("€")
     }
 

@@ -44,20 +44,21 @@ public abstract class BookRoomDatabase : RoomDatabase() {
             }
         }
     }
-    private class BookDatabaseCallback(private val scope : CoroutineScope) : RoomDatabase.Callback(){
+
+    private class BookDatabaseCallback(private val scope: CoroutineScope) :
+        RoomDatabase.Callback() {
 
         override fun onOpen(db: SupportSQLiteDatabase) {
             super.onOpen(db)
-            DB_INSTANCE?.let {
-                dbInstance ->
+            DB_INSTANCE?.let { dbInstance ->
                 scope.launch {
                     populateDatabase(dbInstance.bookDao())
                 }
             }
         }
 
-        suspend fun populateDatabase(bookDao: BookDao){
-            Log.d("BOOK","Book : coucou")
+        suspend fun populateDatabase(bookDao: BookDao) {
+            Log.d("BOOK", "Book : coucou")
             var book = Book(
                 "isbn",
                 "title",

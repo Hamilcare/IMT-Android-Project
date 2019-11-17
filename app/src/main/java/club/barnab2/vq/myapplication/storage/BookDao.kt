@@ -10,7 +10,7 @@ import club.barnab2.vq.myapplication.entity.Book
 @Dao
 interface BookDao {
     @Query("SELECT * from book_table")
-    fun getAllBooks() : LiveData<List<Book>>
+    fun getAllBooks(): LiveData<List<Book>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(book: Book)

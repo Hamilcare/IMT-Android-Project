@@ -2,14 +2,12 @@ package club.barnab2.vq.myapplication
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.lifecycle.Observer
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import club.barnab2.vq.myapplication.entity.Book
 import club.barnab2.vq.myapplication.fragments.BookDetailFragment
 import club.barnab2.vq.myapplication.fragments.BookListFragment
@@ -21,24 +19,40 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class MainActivity : AppCompatActivity(),OnBookSelected {
+class MainActivity : AppCompatActivity(), OnBookSelected {
 
-    private  val newBookActivityRequestCode = 1
+    private val newBookActivityRequestCode = 1
     private lateinit var bookViewModel: BookViewModel
-    private lateinit var bookService : HenryPotierService
+    private lateinit var bookService: HenryPotierService
+    private var isLandscape = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        if (savedInstanceState == null) {
+//        if (savedInstanceState == null) {
+//            supportFragmentManager
+//                .beginTransaction()
+//                .add(R.id.root_layout, BookListFragment.newInstance(), "bookList")
+//                .commit()
+//        }
+
+        isLandscape = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+        if (isLandscape) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.landscape_list, BookListFragment.newInstance(), "bookList")
+                .replace(R.id.landscape_detail, BookDetailFragment.newInstance(), "detail").commit()
+        } else {
             supportFragmentManager
                 .beginTransaction()
-                .add(R.id.root_layout, BookListFragment.newInstance(), "bookList")
+                .replace(R.id.root_layout, BookListFragment.newInstance(), "bookList")
+                .addToBackStack(null)
                 .commit()
         }
-        
-        bookViewModel= ViewModelProvider(this).get(BookViewModel::class.java)
+
+
+
+        bookViewModel = ViewModelProvider(this).get(BookViewModel::class.java)
 
         setupAddButton()
         setupDeleteAllButton()
@@ -54,12 +68,25 @@ class MainActivity : AppCompatActivity(),OnBookSelected {
     }
 
     override fun onBookSelected(book: Book) {
-        Toast.makeText(this, "Hey, you selected " + book.title + "!",
-            Toast.LENGTH_SHORT).show()
+        Toast.makeText(
+            this, "Hey, you selected " + book.title + "!",
+            Toast.LENGTH_SHORT
+        ).show()
 
         val detailFragment = BookDetailFragment.newInstance(book)
-        supportFragmentManager.beginTransaction().replace(R.id.root_layout,detailFragment,"bookDetails'")
-            .addToBackStack(null).commit()
+
+        if (isLandscape) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.landscape_detail, detailFragment, "detail").addToBackStack(null)
+                .commit()
+        } else {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.root_layout, detailFragment, "detail").addToBackStack(null)
+                .commit()
+        }
+
+
     }
 
 
@@ -71,32 +98,33 @@ class MainActivity : AppCompatActivity(),OnBookSelected {
         }
     }
 
-    private fun setupDeleteAllButton(){
+    private fun setupDeleteAllButton() {
         val deleteAll = findViewById<FloatingActionButton>(R.id.drop_table)
         deleteAll.setOnClickListener {
-            Toast.makeText(applicationContext,"Deleting data",Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, "Deleting data", Toast.LENGTH_SHORT).show()
             bookViewModel.deleteAll()
         }
     }
 
-    private fun setupSyncButton(){
-        val syncButton =findViewById<FloatingActionButton>(R.id.force_sync)
+    private fun setupSyncButton() {
+        val syncButton = findViewById<FloatingActionButton>(R.id.force_sync)
         syncButton.setOnClickListener {
-            Toast.makeText(applicationContext,"Synchronizing",Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, "Synchronizing", Toast.LENGTH_SHORT).show()
             syncBook()
         }
     }
-//
-    private fun syncBook(){
+
+    //
+    private fun syncBook() {
         val lstBooks = bookService.getAllBooks()
 
-        lstBooks.enqueue(object :Callback<List<Book>>{
+        lstBooks.enqueue(object : Callback<List<Book>> {
 
             //On Success
             override fun onResponse(call: Call<List<Book>>, response: Response<List<Book>>) {
                 val allBooks = response.body()
-                allBooks?.let{
-                    for (book in it){
+                allBooks?.let {
+                    for (book in it) {
                         Log.d("BOOK", "book : ${book.title}")
                         bookViewModel.insert(book)
                     }
@@ -114,17 +142,17 @@ class MainActivity : AppCompatActivity(),OnBookSelected {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if(requestCode == newBookActivityRequestCode && resultCode == Activity.RESULT_OK){
+        if (requestCode == newBookActivityRequestCode && resultCode == Activity.RESULT_OK) {
             data?.getParcelableExtra<Book>(NewBookActivity.EXTRA_REPLY)?.let {
 
                 bookViewModel.insert(it)
             }
-        } else{
-            Toast.makeText(applicationContext,"Something wrong appened",Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(applicationContext, "Something wrong appened", Toast.LENGTH_LONG).show()
         }
     }
 
-    companion object{
+    companion object {
         const val url = "http://henri-potier.xebia.fr/"
     }
 }

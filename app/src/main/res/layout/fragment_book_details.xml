@@ -17,15 +17,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:layout_marginBottom="0dp"
-             />
+            android:layout_marginBottom="0dp" />
 
         <ImageView
             android:id="@+id/detail_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:layout_marginBottom="0dp"/>
+            android:layout_marginBottom="0dp" />
 
 
         <TextView
@@ -38,8 +37,6 @@
             android:layout_marginRight="1dp"
             android:layout_marginBottom="2dp"
             android:autoLink="web"
-            android:text="The sweet-faced, lovable Labrador Retriever is America’s most popular
-                dog breed. Labs are friendly, outgoing, and high-spirited companions."
             tools:ignore="HardcodedText" />
 
     </LinearLayout>

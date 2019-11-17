@@ -10,7 +10,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import club.barnab2.vq.myapplication.entity.Book
-import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 
 
@@ -27,14 +26,14 @@ class BookListAdapter internal constructor(
     private val picassoBuilder = Picasso.Builder(context)
     private val picasso = picassoBuilder.listener(object : Picasso.Listener {
         override fun onImageLoadFailed(picasso: Picasso, uri: Uri, exception: Exception) {
-            Log.d("error Picasso","exception $exception")
+            Log.d("error Picasso", "exception $exception")
         }
     }).build()
 
     inner class BookViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val bookTitleView: TextView = itemView.findViewById(R.id.titleView)
         val bookAuthorView: TextView = itemView.findViewById(R.id.authorView)
-        val coverView : ImageView = itemView.findViewById(R.id.imageView)
+        val coverView: ImageView = itemView.findViewById(R.id.imageView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookViewHolder {
@@ -54,7 +53,7 @@ class BookListAdapter internal constructor(
         picasso.load(current.cover).resize(343, 500).onlyScaleDown()
             .into(holder.coverView)
 
-        holder.itemView.setOnClickListener{
+        holder.itemView.setOnClickListener {
             listener.onBookSelected(current)
         }
     }
