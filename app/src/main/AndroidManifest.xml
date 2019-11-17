@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="club.barnab2.vq.myapplication">
+    package="club.barnab2.quiedeville.myapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -15,9 +15,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".NewBookActivity"
+            android:name="club.barnab2.quiedeville.myapplication.NewBookActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name="club.barnab2.quiedeville.myapplication.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

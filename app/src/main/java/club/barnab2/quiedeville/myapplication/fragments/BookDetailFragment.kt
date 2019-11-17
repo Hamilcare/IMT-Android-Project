@@ -1,4 +1,4 @@
-package club.barnab2.vq.myapplication.fragments
+package club.barnab2.quiedeville.myapplication.fragments
 
 import android.net.Uri
 import android.os.Bundle
@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import club.barnab2.vq.myapplication.R
-import club.barnab2.vq.myapplication.entity.Book
+import club.barnab2.quiedeville.myapplication.R
+import club.barnab2.quiedeville.myapplication.entity.Book
 import com.squareup.picasso.Picasso
 
 class BookDetailFragment : Fragment() {

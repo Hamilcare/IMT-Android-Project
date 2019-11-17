@@ -1,4 +1,4 @@
-package club.barnab2.vq.myapplication
+package club.barnab2.quiedeville.myapplication
 
 import android.app.Activity
 import android.content.Intent
@@ -8,10 +8,10 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import club.barnab2.vq.myapplication.entity.Book
-import club.barnab2.vq.myapplication.fragments.BookDetailFragment
-import club.barnab2.vq.myapplication.fragments.BookListFragment
-import club.barnab2.vq.myapplication.service.HenryPotierService
+import club.barnab2.quiedeville.myapplication.entity.Book
+import club.barnab2.quiedeville.myapplication.fragments.BookDetailFragment
+import club.barnab2.quiedeville.myapplication.fragments.BookListFragment
+import club.barnab2.quiedeville.myapplication.service.HenryPotierService
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import retrofit2.Call
 import retrofit2.Callback

@@ -1,4 +1,4 @@
-package club.barnab2.vq.myapplication.fragments
+package club.barnab2.quiedeville.myapplication.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -10,11 +10,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import club.barnab2.vq.myapplication.BookListAdapter
-import club.barnab2.vq.myapplication.BookViewModel
-import club.barnab2.vq.myapplication.OnBookSelected
-import club.barnab2.vq.myapplication.R
-import club.barnab2.vq.myapplication.service.HenryPotierService
+import club.barnab2.quiedeville.myapplication.BookListAdapter
+import club.barnab2.quiedeville.myapplication.BookViewModel
+import club.barnab2.quiedeville.myapplication.OnBookSelected
+import club.barnab2.quiedeville.myapplication.R
+import club.barnab2.quiedeville.myapplication.service.HenryPotierService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

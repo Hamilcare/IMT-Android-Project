@@ -1,12 +1,12 @@
-package club.barnab2.vq.myapplication
+package club.barnab2.quiedeville.myapplication
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import club.barnab2.vq.myapplication.entity.Book
-import club.barnab2.vq.myapplication.storage.BookRepository
-import club.barnab2.vq.myapplication.storage.BookRoomDatabase
+import club.barnab2.quiedeville.myapplication.entity.Book
+import club.barnab2.quiedeville.myapplication.storage.BookRepository
+import club.barnab2.quiedeville.myapplication.storage.BookRoomDatabase
 import kotlinx.coroutines.launch
 
 class BookViewModel(application: Application) : AndroidViewModel(application) {

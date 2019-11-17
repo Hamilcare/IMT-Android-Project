@@ -1,10 +1,10 @@
-package club.barnab2.vq.myapplication.entity
+package club.barnab2.quiedeville.myapplication.entity
 
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
-import club.barnab2.vq.myapplication.storage.BookSynopsisConverter
+import club.barnab2.quiedeville.myapplication.storage.BookSynopsisConverter
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize

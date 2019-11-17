@@ -1,7 +1,7 @@
-package club.barnab2.vq.myapplication.storage
+package club.barnab2.quiedeville.myapplication.storage
 
 import androidx.lifecycle.LiveData
-import club.barnab2.vq.myapplication.entity.Book
+import club.barnab2.quiedeville.myapplication.entity.Book
 
 class BookRepository(private val bookDao: BookDao) {
 

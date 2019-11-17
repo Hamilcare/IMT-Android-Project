@@ -1,4 +1,4 @@
-package club.barnab2.vq.myapplication
+package club.barnab2.quiedeville.myapplication
 
 import android.Manifest
 import android.app.Activity
@@ -13,7 +13,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import club.barnab2.vq.myapplication.entity.Book
+import club.barnab2.quiedeville.myapplication.entity.Book
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class NewBookActivity : AppCompatActivity() {

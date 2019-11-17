@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Valentin Quiedeville</string>
     <string name="hint_isbn">Isbn</string>
     <string name="hint_title">Title</string>
     <string name="label_price">Price</string>

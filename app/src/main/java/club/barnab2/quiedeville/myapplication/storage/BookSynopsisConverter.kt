@@ -1,4 +1,4 @@
-package club.barnab2.vq.myapplication.storage
+package club.barnab2.quiedeville.myapplication.storage
 
 import androidx.room.TypeConverter
 

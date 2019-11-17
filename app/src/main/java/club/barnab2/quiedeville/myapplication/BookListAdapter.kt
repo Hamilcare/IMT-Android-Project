@@ -1,4 +1,4 @@
-package club.barnab2.vq.myapplication
+package club.barnab2.quiedeville.myapplication
 
 import android.content.Context
 import android.net.Uri
@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import club.barnab2.vq.myapplication.entity.Book
+import club.barnab2.quiedeville.myapplication.entity.Book
 import com.squareup.picasso.Picasso
 
 

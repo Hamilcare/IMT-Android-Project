@@ -1,7 +1,7 @@
-package club.barnab2.vq.myapplication.service
+package club.barnab2.quiedeville.myapplication.service
 
 
-import club.barnab2.vq.myapplication.entity.Book
+import club.barnab2.quiedeville.myapplication.entity.Book
 import retrofit2.Call
 import retrofit2.http.GET
 

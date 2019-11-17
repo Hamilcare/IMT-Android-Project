@@ -1,4 +1,4 @@
-package club.barnab2.vq.myapplication
+package club.barnab2.quiedeville.myapplication
 
 import org.junit.Test
 
