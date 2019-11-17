@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import club.barnab2.vq.myapplication.entity.Book
+import club.barnab2.vq.myapplication.fragments.BookListFragment
 import club.barnab2.vq.myapplication.service.HenryPotierService
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import retrofit2.Call
@@ -29,19 +30,23 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        if (savedInstanceState == null) {
+            supportFragmentManager
+                .beginTransaction()
+                .add(R.id.root_layout, BookListFragment.newInstance(), "bookList")
+                .commit()
+        }
 
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
-        val adapter = BookListAdapter(this)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
-
+//        val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
+//        val adapter = BookListAdapter(this)
+//        recyclerView.adapter = adapter
+//        recyclerView.layoutManager = LinearLayoutManager(this)
+//
         bookViewModel= ViewModelProvider(this).get(BookViewModel::class.java)
-        bookViewModel.allBooks.observe(this, Observer { books -> books?.let {adapter.setBooks(it)} })
-
-        Log.d("Main_activity","Main_activity")
-
-
+//        bookViewModel.allBooks.observe(this, Observer { books -> books?.let {adapter.setBooks(it)} })
+//
+//        Log.d("Main_activity","Main_activity")
 
         setupAddButton()
         setupDeleteAllButton()
@@ -53,7 +58,6 @@ class MainActivity : AppCompatActivity() {
             .build()
 
         bookService = retrofit.create(HenryPotierService::class.java)
-
 
     }
 
@@ -80,7 +84,7 @@ class MainActivity : AppCompatActivity() {
             syncBook()
         }
     }
-
+//
     private fun syncBook(){
         val lstBooks = bookService.getAllBooks()
 

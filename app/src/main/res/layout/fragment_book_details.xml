@@ -1,0 +1,41 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:ignore="RtlHardcoded">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/name"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="0dp"
+            android:text="Labrador"
+            tools:ignore="HardcodedText" />
+
+
+        <TextView
+            android:id="@+id/description"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="2dp"
+            android:autoLink="web"
+            android:text="The sweet-faced, lovable Labrador Retriever is America’s most popular
+                dog breed. Labs are friendly, outgoing, and high-spirited companions."
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+</ScrollView>
