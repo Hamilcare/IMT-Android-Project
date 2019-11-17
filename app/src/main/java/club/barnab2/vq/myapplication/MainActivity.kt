@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import club.barnab2.vq.myapplication.entity.Book
+import club.barnab2.vq.myapplication.fragments.BookDetailFragment
 import club.barnab2.vq.myapplication.fragments.BookListFragment
 import club.barnab2.vq.myapplication.service.HenryPotierService
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -20,7 +21,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),OnBookSelected {
 
     private  val newBookActivityRequestCode = 1
     private lateinit var bookViewModel: BookViewModel
@@ -36,17 +37,8 @@ class MainActivity : AppCompatActivity() {
                 .add(R.id.root_layout, BookListFragment.newInstance(), "bookList")
                 .commit()
         }
-
-
-//        val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
-//        val adapter = BookListAdapter(this)
-//        recyclerView.adapter = adapter
-//        recyclerView.layoutManager = LinearLayoutManager(this)
-//
+        
         bookViewModel= ViewModelProvider(this).get(BookViewModel::class.java)
-//        bookViewModel.allBooks.observe(this, Observer { books -> books?.let {adapter.setBooks(it)} })
-//
-//        Log.d("Main_activity","Main_activity")
 
         setupAddButton()
         setupDeleteAllButton()
@@ -60,6 +52,16 @@ class MainActivity : AppCompatActivity() {
         bookService = retrofit.create(HenryPotierService::class.java)
 
     }
+
+    override fun onBookSelected(book: Book) {
+        Toast.makeText(this, "Hey, you selected " + book.title + "!",
+            Toast.LENGTH_SHORT).show()
+
+        val detailFragment = BookDetailFragment.newInstance(book)
+        supportFragmentManager.beginTransaction().replace(R.id.root_layout,detailFragment,"bookDetails'")
+            .addToBackStack(null).commit()
+    }
+
 
     private fun setupAddButton() {
         val fab = findViewById<FloatingActionButton>(R.id.add_book)

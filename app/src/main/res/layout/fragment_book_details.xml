@@ -12,18 +12,24 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/detail_title"
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="0dp"
-            android:text="Labrador"
-            tools:ignore="HardcodedText" />
+             />
+
+        <ImageView
+            android:id="@+id/detail_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="0dp"/>
 
 
         <TextView
-            android:id="@+id/description"
+            android:id="@+id/detail_synopsis"
             style="@style/TextAppearance.AppCompat.Body1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -6,7 +6,7 @@ public class BookSynopsisConverter {
 
     @TypeConverter
     fun  fromList(synopsis : Array<String>): String{
-        return synopsis[0]
+        return synopsis.joinToString()
     }
 
     @TypeConverter

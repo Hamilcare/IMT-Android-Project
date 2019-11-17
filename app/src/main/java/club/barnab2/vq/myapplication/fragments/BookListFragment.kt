@@ -12,15 +12,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import club.barnab2.vq.myapplication.BookListAdapter
 import club.barnab2.vq.myapplication.BookViewModel
+import club.barnab2.vq.myapplication.OnBookSelected
 import club.barnab2.vq.myapplication.R
+import club.barnab2.vq.myapplication.entity.Book
 import club.barnab2.vq.myapplication.service.HenryPotierService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.lang.ClassCastException
 
 class BookListFragment : Fragment() {
 
     private lateinit var bookViewModel: BookViewModel
     private lateinit var bookService: HenryPotierService
+    lateinit var listener : OnBookSelected
 
     companion object {
         fun newInstance(): BookListFragment {
@@ -33,6 +37,11 @@ class BookListFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         bookViewModel = ViewModelProvider(this).get(BookViewModel::class.java)
+        if(context is OnBookSelected) {
+            listener = context
+        } else {
+            throw ClassCastException(context.toString()+" must iplment onBookSelected.")
+        }
 
         val retrofit = Retrofit.Builder()
             .baseUrl(url)
@@ -54,7 +63,7 @@ class BookListFragment : Fragment() {
         val activity = activity as Context
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
 
-        val adapter = BookListAdapter(activity)
+        val adapter = BookListAdapter(activity,listener)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(activity)
 
@@ -64,3 +73,4 @@ class BookListFragment : Fragment() {
     }
 
 }
+

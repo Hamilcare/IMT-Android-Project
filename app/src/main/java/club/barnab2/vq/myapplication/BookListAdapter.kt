@@ -15,14 +15,17 @@ import com.squareup.picasso.Picasso
 
 
 class BookListAdapter internal constructor(
-    context: Context
+    context: Context,
+    listener: OnBookSelected
 ) : RecyclerView.Adapter<BookListAdapter.BookViewHolder>() {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var books = emptyList<Book>()
+    private val listener = listener
 
-    val picassoBuilder = Picasso.Builder(context)
-    val picasso = picassoBuilder.listener(object : Picasso.Listener {
+
+    private val picassoBuilder = Picasso.Builder(context)
+    private val picasso = picassoBuilder.listener(object : Picasso.Listener {
         override fun onImageLoadFailed(picasso: Picasso, uri: Uri, exception: Exception) {
             Log.d("error Picasso","exception $exception")
         }
@@ -50,6 +53,10 @@ class BookListAdapter internal constructor(
         Log.d("BookItem", "Book : $current")
         picasso.load(current.cover).resize(343, 500).onlyScaleDown()
             .into(holder.coverView)
+
+        holder.itemView.setOnClickListener{
+            listener.onBookSelected(current)
+        }
     }
 
     internal fun setBooks(words: List<Book>) {
